@@ -35,6 +35,7 @@ function App() {
           </div>
         )
       }
+      <TranscriptList />
 
     </div>
   )

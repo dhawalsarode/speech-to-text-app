@@ -40,4 +40,30 @@ const uploadAudio = async (req, res) => {
   }
 }
 
+const getTranscriptions =
+  async (req, res) => {
+
+    try {
+
+      const transcripts =
+        await Transcription.find()
+          .sort({ createdAt: -1 })
+
+      res.status(200).json(transcripts)
+
+    } catch (error) {
+
+      console.log(error)
+
+      res.status(500).json({
+        message: "Server Error"
+      })
+    }
+}
+
+module.exports = {
+  uploadAudio,
+  getTranscriptions
+}
+
 module.exports = { uploadAudio }

@@ -1,6 +1,7 @@
 const express = require("express")
 const multer = require("multer")
 const { uploadAudio } = require("../controllers/uploadController")
+const { getTranscriptions } = require("../controllers/uploadController")
 
 const router = express.Router()
 
@@ -17,5 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 router.post("/", upload.single("audio"), uploadAudio)
+
+router.get("/", getTranscriptions)
 
 module.exports = router
