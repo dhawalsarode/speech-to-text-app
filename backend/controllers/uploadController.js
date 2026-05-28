@@ -56,7 +56,7 @@ const getTranscriptions =
       console.log(error)
 
       res.status(500).json({
-        message: "Server Error"
+      message: error.message
       })
     }
 }

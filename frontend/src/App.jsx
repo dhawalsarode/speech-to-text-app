@@ -1,5 +1,6 @@
 import { useState } from "react"
 import UploadForm from "./components/UploadForm"
+import Recorder from "./components/Recorder"
 import TranscriptList from "./components/TranscriptList"
 
 function App() {
@@ -9,33 +10,48 @@ function App() {
 
   return (
 
-    <div className="min-h-screen bg-gray-100 p-10">
+    <div className="min-h-screen bg-gray-100 py-10">
 
-      <h1 className="text-3xl font-bold mb-8">
-        Speech To Text App
-      </h1>
+      <div className="max-w-4xl mx-auto px-4">
 
-      <UploadForm
-        setTranscript={setTranscript}
-      />
+        <div className="bg-white rounded-3xl shadow-xl p-8">
 
-      {
-        transcript && (
+          <h1 className="text-4xl font-bold text-center text-blue-600 mb-2">
+            Speech To Text
+          </h1>
 
-          <div className="mt-8 bg-white p-6 rounded shadow">
+          <p className="text-center text-gray-500 mb-10">
+            Upload or record audio and convert speech into text
+          </p>
 
-            <h2 className="text-xl font-bold mb-2">
-              Transcript
-            </h2>
+          <UploadForm
+            setTranscript={setTranscript}
+          />
 
-            <p>
-              {transcript.transcript}
-            </p>
+          <Recorder />
 
-          </div>
-        )
-      }
-      <TranscriptList />
+          {
+            transcript && (
+
+              <div className="mt-10 bg-gray-50 rounded-2xl p-6 shadow">
+
+                <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+                  Latest Transcript
+                </h2>
+
+                <p className="text-gray-700 leading-relaxed">
+                  {transcript.transcript}
+                </p>
+
+              </div>
+            )
+          }
+
+        </div>
+
+        <TranscriptList />
+
+      </div>
 
     </div>
   )

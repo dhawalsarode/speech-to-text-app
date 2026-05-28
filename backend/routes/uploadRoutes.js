@@ -15,7 +15,28 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage })
+const upload = multer({
+
+  storage,
+
+  fileFilter: (req, file, cb) => {
+
+    if (
+      file.mimetype.startsWith("audio/")
+    ) {
+
+      cb(null, true)
+
+    } else {
+
+      cb(
+        new Error(
+          "Only audio files are allowed"
+        )
+      )
+    }
+  }
+})
 
 router.post("/", upload.single("audio"), uploadAudio)
 
